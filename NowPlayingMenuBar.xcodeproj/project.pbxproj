@@ -8,18 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		3FB88A2A2BB101110010B9DB /* NowPlayingMenuBarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB88A292BB101110010B9DB /* NowPlayingMenuBarApp.swift */; };
-		3FB88A2C2BB101110010B9DB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB88A2B2BB101110010B9DB /* ContentView.swift */; };
 		3FB88A2E2BB101120010B9DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FB88A2D2BB101120010B9DB /* Assets.xcassets */; };
 		3FB88A312BB101120010B9DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FB88A302BB101120010B9DB /* Preview Assets.xcassets */; };
+		3FB88A392BB1014F0010B9DB /* NowPlayingObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB88A382BB1014F0010B9DB /* NowPlayingObserver.swift */; };
+		3FB88A3B2BB101690010B9DB /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB88A3A2BB101690010B9DB /* LaunchAtLogin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3FB88A262BB101110010B9DB /* NowPlayingMenuBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlayingMenuBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FB88A292BB101110010B9DB /* NowPlayingMenuBarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingMenuBarApp.swift; sourceTree = "<group>"; };
-		3FB88A2B2BB101110010B9DB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3FB88A2D2BB101120010B9DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FB88A302BB101120010B9DB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3FB88A322BB101120010B9DB /* NowPlayingMenuBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NowPlayingMenuBar.entitlements; sourceTree = "<group>"; };
+		3FB88A382BB1014F0010B9DB /* NowPlayingObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingObserver.swift; sourceTree = "<group>"; };
+		3FB88A3A2BB101690010B9DB /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +55,8 @@
 			isa = PBXGroup;
 			children = (
 				3FB88A292BB101110010B9DB /* NowPlayingMenuBarApp.swift */,
-				3FB88A2B2BB101110010B9DB /* ContentView.swift */,
+				3FB88A382BB1014F0010B9DB /* NowPlayingObserver.swift */,
+				3FB88A3A2BB101690010B9DB /* LaunchAtLogin.swift */,
 				3FB88A2D2BB101120010B9DB /* Assets.xcassets */,
 				3FB88A322BB101120010B9DB /* NowPlayingMenuBar.entitlements */,
 				3FB88A2F2BB101120010B9DB /* Preview Content */,
@@ -79,6 +82,8 @@
 				3FB88A222BB101110010B9DB /* Sources */,
 				3FB88A232BB101110010B9DB /* Frameworks */,
 				3FB88A242BB101110010B9DB /* Resources */,
+				3FB88A3C2BB101FC0010B9DB /* ShellScript */,
+				3FB88A3D2BB1027C0010B9DB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -134,13 +139,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3FB88A3C2BB101FC0010B9DB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n  export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		3FB88A3D2BB1027C0010B9DB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n  export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swift-format >/dev/null; then\n    echo \"Formatting with swift-format\"\n    swift-format format --in-place --recursive ${PROJECT_DIR}\nelse\n    echo \"warning: swift-format not installed\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3FB88A222BB101110010B9DB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FB88A2C2BB101110010B9DB /* ContentView.swift in Sources */,
+				3FB88A392BB1014F0010B9DB /* NowPlayingObserver.swift in Sources */,
 				3FB88A2A2BB101110010B9DB /* NowPlayingMenuBarApp.swift in Sources */,
+				3FB88A3B2BB101690010B9DB /* LaunchAtLogin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,12 +323,16 @@
 				DEVELOPMENT_TEAM = 9A3P8395B7;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trevorburnham.NowPlayingMenuBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -305,12 +354,16 @@
 				DEVELOPMENT_TEAM = 9A3P8395B7;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trevorburnham.NowPlayingMenuBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
