@@ -12,6 +12,8 @@
 		3FB88A312BB101120010B9DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FB88A302BB101120010B9DB /* Preview Assets.xcassets */; };
 		3FB88A392BB1014F0010B9DB /* NowPlayingObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB88A382BB1014F0010B9DB /* NowPlayingObserver.swift */; };
 		3FB88A3B2BB101690010B9DB /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB88A3A2BB101690010B9DB /* LaunchAtLogin.swift */; };
+		3FB88A412BB380530010B9DB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3FB88A402BB380530010B9DB /* README.md */; };
+		3FB88A432BB380990010B9DB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 3FB88A422BB380990010B9DB /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		3FB88A322BB101120010B9DB /* NowPlayingMenuBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NowPlayingMenuBar.entitlements; sourceTree = "<group>"; };
 		3FB88A382BB1014F0010B9DB /* NowPlayingObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingObserver.swift; sourceTree = "<group>"; };
 		3FB88A3A2BB101690010B9DB /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
+		3FB88A402BB380530010B9DB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
+		3FB88A422BB380990010B9DB /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +62,10 @@
 				3FB88A382BB1014F0010B9DB /* NowPlayingObserver.swift */,
 				3FB88A3A2BB101690010B9DB /* LaunchAtLogin.swift */,
 				3FB88A2D2BB101120010B9DB /* Assets.xcassets */,
+				3FB88A402BB380530010B9DB /* README.md */,
 				3FB88A322BB101120010B9DB /* NowPlayingMenuBar.entitlements */,
 				3FB88A2F2BB101120010B9DB /* Preview Content */,
+				3FB88A422BB380990010B9DB /* LICENSE */,
 			);
 			path = NowPlayingMenuBar;
 			sourceTree = "<group>";
@@ -132,7 +138,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB88A412BB380530010B9DB /* README.md in Resources */,
 				3FB88A312BB101120010B9DB /* Preview Assets.xcassets in Resources */,
+				3FB88A432BB380990010B9DB /* LICENSE in Resources */,
 				3FB88A2E2BB101120010B9DB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
