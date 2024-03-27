@@ -74,8 +74,7 @@ class NowPlayingObserver: NSObject, ObservableObject {
 
     // Get song info.
     MRMediaRemoteGetNowPlayingInfo(
-      DispatchQueue.main,
-      { (information) in
+      DispatchQueue.main, { (information) in
         var name: String?
         var artist: String?
         var playbackRate = 0.0
