@@ -18,15 +18,15 @@ jobs:
 
     - name: Import Apple Distribution Certificate
       env:
-        DIST_CERTIFICATE_BASE64: ${{ secrets.DIST_CERTIFICATE_BASE64 }}
-        DIST_CERTIFICATE_PASSWORD: ${{ secrets.DIST_CERTIFICATE_PASSWORD }}
+        DEVELOPER_ID_CERT_BASE64: ${{ secrets.DEVELOPER_ID_CERT_BASE64 }}
+        DEVELOPER_ID_CERT_PASSWORD: ${{ secrets.DEVELOPER_ID_CERT_PASSWORD }}
         KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
       run: |
-        echo "$DIST_CERTIFICATE_BASE64" | base64 --decode > certificate.p12
+        echo "$DEVELOPER_ID_CERT_BASE64" | base64 --decode > certificate.p12
         security create-keychain -p "$KEYCHAIN_PASSWORD" build.keychain
         security default-keychain -s build.keychain
         security unlock-keychain -p "$KEYCHAIN_PASSWORD" build.keychain
-        security import certificate.p12 -k build.keychain -P "$DIST_CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+        security import certificate.p12 -k build.keychain -P "$DEVELOPER_ID_CERT_PASSWORD" -T /usr/bin/codesign
         security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KEYCHAIN_PASSWORD" build.keychain
 
     - name: Build App
@@ -37,7 +37,20 @@ jobs:
       env:
         CODESIGN_IDENTITY: ${{ secrets.CODESIGN_IDENTITY }}
       run: |
-        codesign -f -s "$CODESIGN_IDENTITY" build/Release/NowPlayingMenuBar.app
+        codesign -f -s "$CODESIGN_IDENTITY" build/Release/NowPlayingMenuBar.app --options runtime
+
+    - name: Notarize App
+      env:
+        APP_DEVELOPER_ID: ${{ secrets.APP_DEVELOPER_ID }}
+        APP_DEVELOPER_TEAM_ID: ${{ secrets.APP_DEVELOPER_TEAM_ID }}
+        NOTARYTOOL_PASSWORD: ${{ secrets.NOTARYTOOL_PASSWORD }}
+      run: |
+        ditto -c -k --keepParent build/Release/NowPlayingMenuBar.app NowPlayingMenuBar-Unnotarized.zip
+        xcrun notarytool submit NowPlayingMenuBar-Unnotarized.zip --apple-id "$APP_DEVELOPER_ID" --password "$NOTARYTOOL_PASSWORD" --team-id "$APP_DEVELOPER_TEAM_ID" --wait
+
+    - name: Staple Notarization Ticket
+      run: |
+        xcrun stapler staple build/Release/NowPlayingMenuBar.app
 
     - name: Archive App
       run: |
