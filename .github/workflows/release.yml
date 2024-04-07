@@ -16,7 +16,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Import Apple Distribution Certificate
+    - name: Import distribution certificate
       env:
         DEVELOPER_ID_CERT_BASE64: ${{ secrets.DEVELOPER_ID_CERT_BASE64 }}
         DEVELOPER_ID_CERT_PASSWORD: ${{ secrets.DEVELOPER_ID_CERT_PASSWORD }}
@@ -29,17 +29,23 @@ jobs:
         security import certificate.p12 -k build.keychain -P "$DEVELOPER_ID_CERT_PASSWORD" -T /usr/bin/codesign
         security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KEYCHAIN_PASSWORD" build.keychain
 
-    - name: Build App
+    - name: Update project version based on tag
+      run: |
+        TAG_VERSION=$(echo "${GITHUB_REF#refs/tags/v}")
+        xcrun agvtool new-version -all "$TAG_VERSION"
+        xcrun agvtool new-marketing-version "$TAG_VERSION"
+
+    - name: Build app
       run: |
         xcodebuild -project NowPlayingMenuBar.xcodeproj -configuration Release
 
-    - name: Sign App
+    - name: Sign app
       env:
         CODESIGN_IDENTITY: ${{ secrets.CODESIGN_IDENTITY }}
       run: |
         codesign -f -s "$CODESIGN_IDENTITY" build/Release/NowPlayingMenuBar.app --options runtime
 
-    - name: Notarize App
+    - name: Notarize app
       env:
         APP_DEVELOPER_ID: ${{ secrets.APP_DEVELOPER_ID }}
         APP_DEVELOPER_TEAM_ID: ${{ secrets.APP_DEVELOPER_TEAM_ID }}
@@ -48,11 +54,11 @@ jobs:
         ditto -c -k --keepParent build/Release/NowPlayingMenuBar.app NowPlayingMenuBar-Unnotarized.zip
         xcrun notarytool submit NowPlayingMenuBar-Unnotarized.zip --apple-id "$APP_DEVELOPER_ID" --password "$NOTARYTOOL_PASSWORD" --team-id "$APP_DEVELOPER_TEAM_ID" --wait
 
-    - name: Staple Notarization Ticket
+    - name: Staple notarization ticket
       run: |
         xcrun stapler staple build/Release/NowPlayingMenuBar.app
 
-    - name: Archive App
+    - name: Archive app
       run: |
         ditto -c -k --keepParent build/Release/NowPlayingMenuBar.app NowPlayingMenuBar.zip
 
