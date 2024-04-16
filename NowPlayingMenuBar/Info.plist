@@ -10,5 +10,13 @@
 	<string>public.app-category.utilities</string>
 	<key>LSUIElement</key>
 	<true/>
+	<key>SUFeedURL</key>
+	<string>https://raw.githubusercontent.com/TrevorBurnham/NowPlayingMenuBar/appcast/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>WcLcf6X1vuMyyU9E8UCLrmUh6AiZu1OXI96UC83Vj2Q=</string>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUAutomaticallyUpdate</key>
+	<true/>
 </dict>
 </plist>
