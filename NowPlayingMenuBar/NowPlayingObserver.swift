@@ -13,10 +13,12 @@ struct TrackInfo: Codable, Equatable {
 }
 
 // Load the MediaRemote framework.
+@MainActor
 let bundle = CFBundleCreate(
   kCFAllocatorDefault,
   NSURL(fileURLWithPath: "/System/Library/PrivateFrameworks/MediaRemote.framework"))
 
+@MainActor
 class NowPlayingObserver: NSObject, ObservableObject {
   // Info for the track that's currently playing.
   var currentTrack: TrackInfo?
@@ -74,7 +76,8 @@ class NowPlayingObserver: NSObject, ObservableObject {
 
     // Get song info.
     MRMediaRemoteGetNowPlayingInfo(
-      DispatchQueue.main, { (information) in
+      DispatchQueue.main,
+      { (information) in
         var name: String?
         var artist: String?
         var playbackRate = 0.0

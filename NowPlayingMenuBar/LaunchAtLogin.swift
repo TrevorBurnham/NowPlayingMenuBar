@@ -8,8 +8,10 @@ import SwiftUI
 import os.log
 
 public enum LaunchAtLogin {
+  @MainActor
   static let observable = Observable()
 
+  @MainActor
   public static var isEnabled: Bool {
     get { SMAppService.mainApp.status == .enabled }
     set {
@@ -34,6 +36,7 @@ public enum LaunchAtLogin {
 }
 
 extension LaunchAtLogin {
+  @MainActor
   final class Observable: ObservableObject {
     var isEnabled: Bool {
       get { LaunchAtLogin.isEnabled }

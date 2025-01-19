@@ -3,18 +3,19 @@
 //  NowPlayingMenuBar
 //
 
-import SwiftUI
 import Sparkle
+import SwiftUI
 
 @main
 struct NowPlayingMenuBarApp: App {
   @ObservedObject var observer = NowPlayingObserver()
   @ObservedObject var launchAtLogin = LaunchAtLogin.observable
-    
+
   private let updaterController: SPUStandardUpdaterController
-    
+
   init() {
-    updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
+    updaterController = SPUStandardUpdaterController(
+      startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
   }
 
   var body: some Scene {
