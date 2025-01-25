@@ -1,6 +1,6 @@
 //
 //  NowPlayingObserver.swift
-//  NowPlayingObserver
+//  NowPlayingMenuBar
 //
 
 import Foundation
