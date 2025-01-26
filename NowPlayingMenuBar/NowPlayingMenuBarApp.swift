@@ -22,13 +22,14 @@ struct NowPlayingMenuBarApp: App {
     )
 
     // Check for updates immediately at launch.
-    updaterController.updater.checkForUpdatesInBackground()
+    updaterController.updater.checkForUpdateInformation()
   }
 
   var body: some Scene {
     MenuBarExtra {
       if let update = sparkleDelegate.updateAvailable {
         Button("Update Available: v\(update.displayVersionString)") {
+          // Prompt the user to update.
           updaterController.checkForUpdates(nil)
         }
         Divider()
