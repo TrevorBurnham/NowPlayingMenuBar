@@ -1,6 +1,6 @@
 # Sparkle binaries
 
-Sparkle v2.6.0.
+Sparkle v2.6.4.
 
 How to find the binaries from Xcode:
 
