@@ -3,12 +3,20 @@
     <channel>
         <title>NowPlayingMenuBar</title>
         <item>
+            <title>0.1.0</title>
+            <pubDate>Sun, 26 Jan 2025 18:11:09 +0000</pubDate>
+            <sparkle:version>0.1.0</sparkle:version>
+            <sparkle:shortVersionString>0.1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/TrevorBurnham/NowPlayingMenuBar/releases/download/v0.1.0/NowPlayingMenuBar-0.1.0.zip" length="2109206" type="application/octet-stream" sparkle:edSignature="q52MxgHgofo9XVvRoa25+1mUq7WH8JRW9y+MIsuUZ+ZFkt0p4ftmlHZRuuDAhhcioUiKlkrLrpxFOBr272zQCw=="/>
+        </item>
+        <item>
             <title>0.0.9</title>
             <pubDate>Sun, 26 Jan 2025 17:44:23 +0000</pubDate>
             <sparkle:version>0.0.9</sparkle:version>
             <sparkle:shortVersionString>0.0.9</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/TrevorBurnham/NowPlayingMenuBar/releases/download/v0.0.9/NowPlayingMenuBar-0.0.9.zip" length="2108995" type="application/octet-stream" sparkle:edSignature="DhgfZWiKyTPUfUsTVFdKr7GTFPGXnKg1vb45iNrdmCz3LgfW8KIf/bzTUI0KliOOLuLwz9qBR7LvaJjYL5GpBQ=="/>
+            <enclosure url="https://github.com/TrevorBurnham/NowPlayingMenuBar/releases/download/v0.1.0/NowPlayingMenuBar-0.0.9.zip" length="2108995" type="application/octet-stream" sparkle:edSignature="DhgfZWiKyTPUfUsTVFdKr7GTFPGXnKg1vb45iNrdmCz3LgfW8KIf/bzTUI0KliOOLuLwz9qBR7LvaJjYL5GpBQ=="/>
         </item>
         <item>
             <title>0.0.8</title>
@@ -16,15 +24,7 @@
             <sparkle:version>0.0.8</sparkle:version>
             <sparkle:shortVersionString>0.0.8</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/TrevorBurnham/NowPlayingMenuBar/releases/download/v0.0.9/NowPlayingMenuBar-0.0.8.zip" length="2109233" type="application/octet-stream" sparkle:edSignature="DLG+JAgOTgCU/O6nbZINtvLVn8NvCCA90KGrbqGgpgeMt4NvJL0E5bJo0YPK/g7hNYyXtsl6OVTK7HYSp2twAw=="/>
-        </item>
-        <item>
-            <title>0.0.7</title>
-            <pubDate>Sun, 26 Jan 2025 00:48:59 +0000</pubDate>
-            <sparkle:version>0.0.7</sparkle:version>
-            <sparkle:shortVersionString>0.0.7</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/TrevorBurnham/NowPlayingMenuBar/releases/download/v0.0.9/NowPlayingMenuBar-0.0.7.zip" length="2108573" type="application/octet-stream" sparkle:edSignature="EL07vb62ByfqMHczn0qPg78xR/hjMzHIsKgjY+JF3tAkh28L91WbPS4JM7nh+VlmMQfRStLg4H2GxIRCjbDJDw=="/>
+            <enclosure url="https://github.com/TrevorBurnham/NowPlayingMenuBar/releases/download/v0.1.0/NowPlayingMenuBar-0.0.8.zip" length="2109233" type="application/octet-stream" sparkle:edSignature="DLG+JAgOTgCU/O6nbZINtvLVn8NvCCA90KGrbqGgpgeMt4NvJL0E5bJo0YPK/g7hNYyXtsl6OVTK7HYSp2twAw=="/>
         </item>
     </channel>
 </rss>
