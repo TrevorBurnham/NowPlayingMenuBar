@@ -20,6 +20,9 @@ struct NowPlayingMenuBarApp: App {
       updaterDelegate: sparkleDelegate,
       userDriverDelegate: sparkleDelegate
     )
+
+    // Check for updates immediately at launch.
+    updaterController.updater.checkForUpdatesInBackground()
   }
 
   var body: some Scene {
