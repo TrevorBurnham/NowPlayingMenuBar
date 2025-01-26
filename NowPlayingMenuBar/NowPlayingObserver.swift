@@ -81,21 +81,34 @@ class NowPlayingObserver: NSObject, ObservableObject {
         var name: String?
         var artist: String?
         var playbackRate = 0.0
+        var elapsedTime = 0.0
+        var duration = 0.0
 
-        if information["kMRMediaRemoteNowPlayingInfoArtist"] != nil {
-          if let info = information["kMRMediaRemoteNowPlayingInfoArtist"] as? String {
-            artist = info
-          }
-          if let info = information["kMRMediaRemoteNowPlayingInfoTitle"] as? String {
-            name = info
-          }
-          if let info = information["kMRMediaRemoteNowPlayingInfoPlaybackRate"] as? Double {
-            playbackRate = info
-          }
+        if let info = information["kMRMediaRemoteNowPlayingInfoArtist"] as? String {
+          artist = info
+        }
+        if let info = information["kMRMediaRemoteNowPlayingInfoTitle"] as? String {
+          name = info
+        }
+        if let info = information["kMRMediaRemoteNowPlayingInfoPlaybackRate"] as? Double {
+          playbackRate = info
+        }
+        if let info = information["kMRMediaRemoteNowPlayingInfoElapsedTime"] as? Double {
+          elapsedTime = info
+        }
+        if let info = information["kMRMediaRemoteNowPlayingInfoDuration"] as? Double {
+          duration = info
         }
 
         self.objectWillChange.send()
-        self.currentTrack = TrackInfo(name: name, artist: artist, playing: playbackRate != 0.0)
+
+        // If elapsedTime >= duration, the track has ended... unless elapsedTime is 0, in which
+        // case the user may be scrubbing and we want to keep showing the track.
+        if playbackRate != 0.0 && (elapsedTime < duration || elapsedTime == 0.0) {
+          self.currentTrack = TrackInfo(name: name, artist: artist, playing: true)
+        } else {
+          self.currentTrack = nil
+        }
       }
     )
   }
